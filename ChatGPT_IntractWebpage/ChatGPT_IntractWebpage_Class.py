@@ -80,10 +80,25 @@ class ChatGPTClass:
         
         try:
             
+
+            # Select all buttons matching the given structure
             response_buttons = self.driver.find_elements(
-        By.XPATH,
-        "//*[@id='__next']/div[contains(@class, 'relative')]/div[contains(@class, 'flex')]/main/div[contains(@class, 'flex')]/div[contains(@class, 'flex-1')]/div/div/div/div/div/div[7]/div/div/div[contains(@class, '-mb-2')]/div/div/button"
-    )
+                By.XPATH,
+                "//*[@id='__next']//div[contains(@class, 'relative') and contains(@class, 'flex')]//main//div[contains(@class, 'flex') and contains(@class, 'focus-visible:outline-0')]//div[contains(@class, 'flex-1')]//div/div/div[contains(@class, '-mb-2')]//button"
+            )
+
+            # Alternatively, if the above doesn't match, try a more simplified path
+            # to ensure we capture all buttons under the specified hierarchy
+            # response_buttons = self.driver.find_elements(
+            #     By.XPATH,
+            #     "//*[@id='__next']//div[contains(@class, '-mb-2')]//button"
+            # )
+
+           
+    #         response_buttons = self.driver.find_elements(
+    #     By.XPATH,
+    #     "//*[@id='__next']/div[contains(@class, 'relative')]/div[contains(@class, 'flex')]/main/div[contains(@class, 'flex')]/div[contains(@class, 'flex-1')]/div/div/div/div/div/div[7]/div/div/div[contains(@class, '-mb-2')]/div/div/button"
+    # )
             if len(response_buttons) >0:
                 response_buttons[0].click()
                 time.sleep(1)
